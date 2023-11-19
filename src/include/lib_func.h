@@ -16,7 +16,7 @@ typedef struct
 void initialize(my_array* ar, int n);
 
 // my_array を解放する
-void release(my_array *ar);
+void release(my_array* ar);
 
 // my_array の要素数を変更する(以前の値は要素が同じ範囲で残す)
 void resize(my_array* ar, int n);
@@ -31,7 +31,6 @@ int get(const my_array* ar, int index);
 
 // my_array の要素数を取得する
 int size(const my_array* ar);
-
 
 
 // C++ でCのライブラリを使うときのおまじない

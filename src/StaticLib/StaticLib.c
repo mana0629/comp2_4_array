@@ -31,31 +31,50 @@ void release(my_array* ar)
 	ar->addr = NULL;// 多重解放の防止
 }
 
-// my_array の要素数を変更する(以前の値は要素が同じ範囲で残す)
 void resize(my_array* ar, int n)
 {
-	// ToOo:配列の要素数を変更しよう！(reallocは禁止)
+
+	my_array new_awaji;
+	initialize(&new_awaji,n);
+
+	for (int i = 0; i < (n >= ar->num ? ar->num : n); i++) {
+		*(new_awaji.addr + i) = *(ar->addr + i);
+	}
+	*ar = new_awaji;
 }
 
 // my_array のindex番目の要素にvalを設定する
 // index が確保されていない場所を指していたら返り値をfalseにする（設定出来たらtrue）
 bool set(my_array* ar, int index, int val)
 {
-	// ToOo:配列の要素を変更しよう！
-	return false;
+
+	if (0 <= index && index < (ar->num) ) {
+		*(ar->addr + index) = val;
+		return true;
+	}
+	else {
+		return false;
+	}
+
 }
 
 // my_array のindex番目の要素を取得する
 // index が確保されていない場所を指していたら0を返す
 int get(const my_array* ar, int index)
 {
-	// ToOo:要素を所得して、indexがおかしかったら0を返そう
-	return -1;
-}
 
+	if (0 <= index && index < (ar->num) ) {
+		return *(ar->addr + index);
+	}
+	else {
+		return 0;
+	}
+
+}
 // my_array の要素数を取得する
 int size(const my_array* ar)
 {
-	// ToOo: 配列の要素数を返そう
-	return -1;
+	
+	return ar->num;
+
 }
